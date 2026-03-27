@@ -173,9 +173,13 @@ export class fn {
 
 	// ─── Lesson orchestration ────────────────────────────────────────────────────
 
+	lessonLocator(page, lessonNumber) {
+		return page.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`)
+	}
+
 	async startLesson(page, lessonNumber) {
 		await page
-			.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`)
+			.locator(lessonLocator(page, lessonNumber))
 			.nth(0)
 			.click();
 
