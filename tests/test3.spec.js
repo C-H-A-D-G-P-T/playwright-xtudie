@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { fn } from './functions.js';
 
 const username = '6702060118';
-const password = 'Pround1234@';
+const password = 'Pround@4444';
 
 test('Start doing pretest-posttest', async ({ page }) => {
 	const func = new fn(page);
@@ -12,7 +12,7 @@ test('Start doing pretest-posttest', async ({ page }) => {
 	await page.fill('//input[@name="password"]', password);
 	await page.click('//button[@name="button"]/span[text()=" เข้าสู่ระบบ "]');
 
-	await func.goSubject(page, 'MK3206');
+	await func.goSubject(page, 'MG3205');
 	await func.startLesson(page, 1);
 	await func.startLesson(page, 2);
 	await func.startLesson(page, 3);

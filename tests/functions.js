@@ -1,13 +1,12 @@
 import ollama from 'ollama';
-import { expect } from '@playwright/test'
+import { expect } from '@playwright/test';
+import { aiPrompt } from './config.js';
 
 export class fn {
 	// ─── Helpers ────────────────────────────────────────────────────────────────
 
 	async goSubject(page, subjectId) {
-		await page.click(
-			`//div[@class="vx-card__body"][div/p[contains(text(),"${subjectId}")]]//button[@name="button"]`,
-		);
+		await page.click(`//div[@class="vx-card__body"][div/p[contains(text(),"${subjectId}")]]//button[@name="button"]`);
 	}
 
 	async getTextAndRemove(page, locator) {
@@ -18,56 +17,50 @@ export class fn {
 	// ─── AI ─────────────────────────────────────────────────────────────────────
 
 	async buildMessages(page) {
-		const question = await this.getTextAndRemove(
-			page,
-			'//div[@class="text-xl"]',
-		);
+		const question = await this.getTextAndRemove(page, '//div[@class="text-xl"]');
 
-		const answer1 = await this.getTextAndRemove(
-			page,
-			'(//span[contains(@class, "choice-text")])[1]',
-		);
+		const choices = [];
 
-		const answer2 = await this.getTextAndRemove(
-			page,
-			'(//span[contains(@class, "choice-text")])[2]',
-		);
+		const answerLocators = [
+			page.locator('(//span[contains(@class, "choice-text")])[1]'),
+			page.locator('(//span[contains(@class, "choice-text")])[2]'),
+			page.locator('(//span[contains(@class, "choice-text")])[3]'),
+			page.locator('(//span[contains(@class, "choice-text")])[4]'),
+		];
 
-		// Build choices conditionally so "null" never appears in the prompt
-		let choices = `A) ${answer1}\nB) ${answer2}`;
+		const labels = ['A', 'B', 'C', 'D'];
 
-		const answer3Locator = page.locator(
-			'(//span[contains(@class, "choice-text")])[3]',
-		);
-		const answer4Locator = page.locator(
-			'(//span[contains(@class, "choice-text")])[4]',
-		);
+		for (let i = 0; i < answerLocators.length; i++) {
+			if ((await answerLocators[i].count()) > 0) {
+				const text = await this.getTextAndRemove(page, `(//span[contains(@class, "choice-text")])[${i + 1}]`);
 
-		if (await answer3Locator.isVisible()) {
-			const answer3 = await this.getTextAndRemove(
-				page,
-				'(//span[contains(@class, "choice-text")])[3]',
-			);
-			choices += `\nC) ${answer3}`;
-		}
-
-		if (await answer4Locator.isVisible()) {
-			const answer4 = await this.getTextAndRemove(
-				page,
-				'(//span[contains(@class, "choice-text")])[4]',
-			);
-			choices += `\nD) ${answer4}`;
+				choices.push(`${labels[i]}) ${text}`);
+			}
 		}
 
 		return [
 			{
 				role: 'system',
-				content:
-					'คุณเป็นบอทตอบข้อสอบ ให้ตอบเฉพาะตัวอักษร A, B, C หรือ D เท่านั้น โดยไม่ต้องมีเครื่องหมายวงเล็บหรือคำอธิบายใดๆ',
+				content: `/no_think
+	
+	คุณเป็นระบบตอบข้อสอบ
+	
+	กฎ:
+	- ตอบได้เฉพาะ A, B, C หรือ D
+	- ห้ามอธิบาย
+	- ห้ามมีข้อความอื่น
+	- ห้ามมีเครื่องหมายวงเล็บ
+	- Output ต้องเป็นตัวอักษรภาษาอังกฤษตัวเดียวเท่านั้น`,
 			},
 			{
 				role: 'user',
-				content: `คำถาม: ${question}\nตัวเลือก:\n${choices}\n\nตอบด้วยตัวอักษรเดียวเท่านั้น:`,
+				content: `คำถาม:
+	${question}
+	
+	ตัวเลือก:
+	${choices.join('\n')}
+	
+	ตอบ:`,
 			},
 		];
 	}
@@ -75,19 +68,7 @@ export class fn {
 	async askAI(messages) {
 		try {
 			// Using the ollama JS SDK — no manual fetch or JSON needed
-			const response = await ollama.chat({
-				model: 'qwen2.5:3b',
-				messages,
-				stream: false,
-				options: {
-					temperature: 0.0, // fully deterministic
-					num_predict: 2, // 1 is sometimes too strict, 2 gives breathing room for token boundary
-					top_k: 1, // only pick the single most likely token
-					top_p: 1.0, // disable nucleus sampling (redundant when top_k: 1, but explicit)
-					repeat_penalty: 1.0, // no penalty needed for single token output
-					stop: [')', '\n', ' '], // stop immediately after the letter
-				},
-			});
+			const response = await ollama.chat(aiPrompt(messages));
 
 			// Normalize: strip anything that isn't A–D
 			const raw = response.message.content ?? '';
@@ -138,17 +119,13 @@ export class fn {
 			if (choiceMap[answer]) {
 				await page.locator(choiceMap[answer]).click();
 			} else {
-				console.warn(
-					`[Q${questionCount + 1}] Unrecognised answer "${answer}", defaulting to A`,
-				);
+				console.warn(`[Q${questionCount + 1}] Unrecognised answer "${answer}", defaulting to A`);
 				await page.locator(choiceMap['A']).click();
 			}
 
 			// FIX: advance to the next question after clicking an answer
 			//      without this the loop would re-read the same question forever
-			const nextBtn = page.locator(
-				'//button[contains(@class,"next") or .//span[text()="ถัดไป"]]',
-			);
+			const nextBtn = page.locator('//button[contains(@class,"next") or .//span[text()="ถัดไป"]]');
 			const nextVisible = await nextBtn.isVisible().catch(() => false);
 			if (nextVisible) {
 				await nextBtn.click();
@@ -166,28 +143,33 @@ export class fn {
 
 		await expect(page.locator('.feather.feather-star').first()).toBeVisible();
 
-		console.log(
-			`[startAnswering] Done — answered ${questionCount} question(s).`,
-		);
+		console.log(`[startAnswering] Done — answered ${questionCount} question(s).`);
 	}
 
 	// ─── Lesson orchestration ────────────────────────────────────────────────────
 
 	lessonLocator(page, lessonNumber) {
-		return page.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`)
+		return page.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`).first();
+	}
+
+	async checkSubmitPreTest(page) {
+		await expect(page.locator('//span[text()="ส่งคำตอบ Pre Test เสร็จสิ้น"]')).toBeVisible();
+		console.log('Submit Pre Test score successful, keep continue...');
+		await page.waitForTimeout(1000);
+	}
+
+	async checkSubmitPostTest(page) {
+		await expect(page.locator('//span[text()="ส่งคำตอบ Post Test เสร็จสิ้น"]')).toBeVisible();
+		console.log('Submit Post Test score successful, keep continue...');
+		await page.waitForTimeout(1000);
 	}
 
 	async startLesson(page, lessonNumber) {
-		await page
-			.locator(lessonLocator(page, lessonNumber))
-			.nth(0)
-			.click();
+		await this.lessonLocator(page, lessonNumber).click();
 
 		const lessonContainer = `//div[@class="p-0 bg-white m-0 w-full"][.//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]]`;
 
-		const pretestBtn = page.locator(
-			`${lessonContainer}//span[text()=" เริ่มทำ Pre Test "]`,
-		);
+		const pretestBtn = page.locator(`${lessonContainer}//span[text()=" เริ่มทำ Pre Test "]`);
 
 		const pretestVisible = await pretestBtn.isVisible().catch(() => false);
 
@@ -200,54 +182,36 @@ export class fn {
 
 		if (pretestVisible) {
 			await pretestBtn.click();
-			await page
-				.locator('//div[@class="w-full flex justify-center"]//button')
-				.click();
+			await page.locator('//div[@class="w-full flex justify-center"]//button').click();
 
 			await this.startAnswering(page); // FIX: added this.
+			await this.checkSubmitPreTest(page);
 
 			// FIX: re-locate posttestBtn after DOM may have changed post-pretest
 			const freshPosttestBtn = page.locator(posttestSelector);
 			await freshPosttestBtn.click();
-			await page
-				.locator('//div[@class="w-full flex justify-center"]//button')
-				.click();
+			await page.locator('//div[@class="w-full flex justify-center"]//button').click();
 
 			await this.startAnswering(page); // FIX: added this.
+			await this.checkSubmitPostTest(page);
 
-			await page
-				.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`)
-				.nth(0)
-				.click();
+			await page.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`).nth(0).click();
 
-			console.log(
-				`[startLesson] หน่วยการเรียนที่ ${lessonNumber} DONE (Pre + Post)`,
-			);
+			console.log(`[startLesson] หน่วยการเรียนที่ ${lessonNumber} DONE (Pre + Post)`);
 		} else if (posttestVisible) {
 			await page.locator(posttestSelector).click();
-			await page
-				.locator('//div[@class="w-full flex justify-center"]//button')
-				.click();
+			await page.locator('//div[@class="w-full flex justify-center"]//button').click();
 
 			await this.startAnswering(page); // FIX: added this.
+			await this.checkSubmitPostTest(page);
 
-			await page
-				.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`)
-				.nth(0)
-				.click();
+			await page.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`).nth(0).click();
 
-			console.log(
-				`[startLesson] หน่วยการเรียนที่ ${lessonNumber} DONE (Post only)`,
-			);
+			console.log(`[startLesson] หน่วยการเรียนที่ ${lessonNumber} DONE (Post only)`);
 		} else {
-			await page
-				.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`)
-				.nth(0)
-				.click();
+			await page.locator(`//p[text()=" หน่วยการเรียนที่ ${lessonNumber} "]`).nth(0).click();
 
-			console.log(
-				`[startLesson] ไม่พบ Pre Test หรือ Post Test ในหน่วยการเรียนที่ ${lessonNumber}`,
-			);
+			console.log(`[startLesson] ไม่พบ Pre Test หรือ Post Test ในหน่วยการเรียนที่ ${lessonNumber}`);
 		}
 	}
 }

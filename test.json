@@ -1,0 +1,208 @@
+{
+    "operationName":"bulkCreateStudentUnitPosttestAnswer",
+    "variables":{
+        "studentUnitPosttestAnswerCreateArray":[
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbqb40utcs3hxuzfnmws",
+                "examAnswerId":"cmlvxmbqb40uucs3h3d0vtubu",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqquo43htcscwuznvntno"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6e4191cs3hx5dfaor1",
+                "examAnswerId":"cmlvxml6f4193cs3h0l4jhvlm",
+                "answerNo":2,
+                "answerSeq":1,
+                "examAnswerNameLocal":"Work Load",
+                "examAnswerNameEng":"Work Load",
+                "studentUnitPosttestId":"cmo5fqqun43hscscwxtw52n4z"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbqb40uwcs3hth4p6lz2",
+                "examAnswerId":"cmlvxmbqb40uycs3h1qmucyjs",
+                "answerNo":2,
+                "answerSeq":1,
+                "examAnswerNameLocal":"ไม่ถูก",
+                "examAnswerNameEng":"ไม่ถูก",
+                "studentUnitPosttestId":"cmo5fqqun43hrcscw9swzz42q"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6h419vcs3ho9vlr1ga",
+                "examAnswerId":"cmlvxml6h419zcs3h7spzzgj4",
+                "answerNo":4,
+                "answerSeq":3,
+                "examAnswerNameLocal":"เป็นการสมมติเหตุการณ์ใกล้เคียงกับความเป็นจริงในด้านบุคคล สถานที่ อุปกรณ์ เลียนแบบสภาพแวดล้อมจริงๆ",
+                "examAnswerNameEng":"เป็นการสมมติเหตุการณ์ใกล้เคียงกับความเป็นจริงในด้านบุคคล สถานที่ อุปกรณ์ เลียนแบบสภาพแวดล้อมจริงๆ",
+                "studentUnitPosttestId":"cmo5fqqun43hqcscwvtpz9fvv"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbq940u8cs3hi6hhgoj7",
+                "examAnswerId":"cmlvxmbq940u9cs3h7ytvivy7",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqun43hpcscwcnxe1cpu"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbq940u5cs3hvctytfrw",
+                "examAnswerId":"cmlvxmbq940u6cs3hwsgszrvf",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqun43hocscwi6ql9lr3"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6f4196cs3hpu09hnyv",
+                "examAnswerId":"cmlvxml6f4199cs3hzwbruvff",
+                "answerNo":3,
+                "answerSeq":2,
+                "examAnswerNameLocal":"เพื่อให้บุคลากรใหม่มีความรู้ ความเข้าในในนโยบายและหน้าที่ของหน่วยงานมากยิ่งขึ้น\r\n",
+                "examAnswerNameEng":"เพื่อให้บุคลากรใหม่มีความรู้ ความเข้าในในนโยบายและหน้าที่ของหน่วยงานมากยิ่งขึ้น\r\n",
+                "studentUnitPosttestId":"cmo5fqqun43hncscwxwcig5em"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6g419lcs3h0yfpevem",
+                "examAnswerId":"cmlvxml6g419mcs3hqscw7qqt",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"เป็นกระบวนการที่ต่อเนื่องมาจากการสรรหาบุคลากร เพื่อกลั่นกรองคัดเลือกบุคคลที่เหมาะสมที่สุด",
+                "examAnswerNameEng":"เป็นกระบวนการที่ต่อเนื่องมาจากการสรรหาบุคลากร เพื่อกลั่นกรองคัดเลือกบุคคลที่เหมาะสมที่สุด",
+                "studentUnitPosttestId":"cmo5fqqun43hmcscwdbecluk5"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbq940tzcs3ht84f1sg2",
+                "examAnswerId":"cmlvxmbq940u0cs3hcm5wpxw5",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqun43hlcscw00i8tsr1"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbqb40uzcs3hshf77ubl",
+                "examAnswerId":"cmlvxmbqb40v0cs3h4gnzujdj",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqun43hkcscwg8s9lpm5"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6g419bcs3hkxdobbtn",
+                "examAnswerId":"cmlvxml6g419ecs3hwv77k160",
+                "answerNo":3,
+                "answerSeq":2,
+                "examAnswerNameLocal":"เป็นการกำหนดคุณสมบัติของพนักงานที่จะทำหน้าที่ต่าง ๆ ให้สอดคล้องกับงานที่จะต้องรับผิดชอบ",
+                "examAnswerNameEng":"เป็นการกำหนดคุณสมบัติของพนักงานที่จะทำหน้าที่ต่าง ๆ ให้สอดคล้องกับงานที่จะต้องรับผิดชอบ",
+                "studentUnitPosttestId":"cmo5fqqun43hjcscw2hsdcu9q"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbqa40uhcs3hi1asdz19",
+                "examAnswerId":"cmlvxmbqa40uics3hp66oq8g5",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqun43hicscwajcj5664"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6i41akcs3hpwdim76f",
+                "examAnswerId":"cmlvxml6j41ancs3h1sp2t47s",
+                "answerNo":3,
+                "answerSeq":2,
+                "examAnswerNameLocal":"เป็นการกำหนดคุณสมบัติของพนักงานที่จะทำหน้าที่ต่าง ๆ ให้สอดคล้องกับงานที่จะต้องรับผิดชอบ",
+                "examAnswerNameEng":"เป็นการกำหนดคุณสมบัติของพนักงานที่จะทำหน้าที่ต่าง ๆ ให้สอดคล้องกับงานที่จะต้องรับผิดชอบ",
+                "studentUnitPosttestId":"cmo5fqqun43hhcscwjndqtcil"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6i41afcs3h9dtcyid3",
+                "examAnswerId":"cmlvxml6i41aics3had1p9xm3",
+                "answerNo":3,
+                "answerSeq":2,
+                "examAnswerNameLocal":"Job description",
+                "examAnswerNameEng":"Job description",
+                "studentUnitPosttestId":"cmo5fqqun43hgcscw1zrzn0n0"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6h41a0cs3hfqy5v8zr",
+                "examAnswerId":"cmlvxml6h41a3cs3hpashl7qp",
+                "answerNo":3,
+                "answerSeq":2,
+                "examAnswerNameLocal":"ทำให้ผู้เข้าร่วมอบรมทราบปัญหา เข้าใจปัญหา เรียนรู้เรื่องราวเพิ่มประสบการณ์และรู้จักวิธีแก้ไขปัญหาได้",
+                "examAnswerNameEng":"ทำให้ผู้เข้าร่วมอบรมทราบปัญหา เข้าใจปัญหา เรียนรู้เรื่องราวเพิ่มประสบการณ์และรู้จักวิธีแก้ไขปัญหาได้",
+                "studentUnitPosttestId":"cmo5fqqun43hfcscwxqk72edx"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbq940ubcs3hekkys7wt",
+                "examAnswerId":"cmlvxmbq940uccs3h6e5yvh5f",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqum43hecscwnha9ccyr"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbq940u2cs3h9p67ntw6",
+                "examAnswerId":"cmlvxmbq940u3cs3hgf0xcq1o",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqum43hdcscw4cdxo35i"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6h419qcs3hzas83zdk",
+                "examAnswerId":"cmlvxml6h419tcs3h32a4ecp8",
+                "answerNo":3,
+                "answerSeq":2,
+                "examAnswerNameLocal":"ทำให้ผู้เข้าร่วมอบรมทราบปัญหา เข้าใจปัญหา เรียนรู้เรื่องราวเพิ่มประสบการณ์และรู้จักวิธีแก้ไขปัญหาได้",
+                "examAnswerNameEng":"ทำให้ผู้เข้าร่วมอบรมทราบปัญหา เข้าใจปัญหา เรียนรู้เรื่องราวเพิ่มประสบการณ์และรู้จักวิธีแก้ไขปัญหาได้",
+                "studentUnitPosttestId":"cmo5fqqum43hccscw767vnw7u"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxml6d418rcs3h29wlkfno",
+                "examAnswerId":"cmlvxml6d418tcs3h4on02vgd",
+                "answerNo":2,
+                "answerSeq":1,
+                "examAnswerNameLocal":"การกำหนดค่าตอบแทนเพื่อให้พนักงานสามารถเลี้ยงชีพได้ตามอัตภาพ",
+                "examAnswerNameEng":"การกำหนดค่าตอบแทนเพื่อให้พนักงานสามารถเลี้ยงชีพได้ตามอัตภาพ",
+                "studentUnitPosttestId":"cmo5fqqum43hbcscwxts55buj"
+            },
+            {
+                "studentUnitTestId":"cmo3xsfpa2pk1cscwk3n9h1xt",
+                "examQuestionId":"cmlvxmbq840ttcs3hygg6a98m",
+                "examAnswerId":"cmlvxmbq840tucs3haxb74gg8",
+                "answerNo":1,
+                "answerSeq":0,
+                "examAnswerNameLocal":"ถูก",
+                "examAnswerNameEng":"ถูก",
+                "studentUnitPosttestId":"cmo5fqqum43hacscwyw26vnkv"
+            }
+        ]
+    },
+    "query":"mutation bulkCreateStudentUnitPosttestAnswer($studentUnitPosttestAnswerCreateArray: [StudentUnitPosttestAnswerBulkCreateInput!]) {\n  bulkCreateStudentUnitPosttestAnswer(studentUnitPosttestAnswerCreateArray: $studentUnitPosttestAnswerCreateArray) {\n    id\n    pretestMaxScore\n    pretestQuestionQty\n    pretestScore\n    isPretestDone\n    posttestMaxScore\n    posttestQuestionQty\n    posttestScore\n    isPosttestDone\n    courseOutlineUnit {\n      id\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

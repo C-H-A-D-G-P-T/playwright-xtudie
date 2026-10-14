@@ -4,10 +4,10 @@ export default defineConfig({
 	testDir: './tests',
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
-	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : undefined,
-	timeout: 10 * 60 * 1000,
-	reporter: 'html',
+	retries: 3,
+	workers: 1,
+	timeout: 60 * 60 * 1000,
+	reporter: [['html', { open: 'never' }]],
 	expect: {
 		timeout: 60 * 1000,
 	},
@@ -16,12 +16,12 @@ export default defineConfig({
 		actionTimeout: 60 * 1000,
 		navigationTimeout: 60 * 1000,
 
-		trace: 'on-first-retry',
+		trace: 'on',
 	},
 	projects: [
 		{
-			name: 'chromium',
-			use: { ...devices['Desktop Chrome'] },
+			name: 'webkit',
+			use: { ...devices['Desktop Safari'] },
 		},
 	],
 });
